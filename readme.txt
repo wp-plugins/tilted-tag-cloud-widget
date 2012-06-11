@@ -4,7 +4,7 @@ Donate link: http://www.whiletrue.it/
 Tags: tag, tags, tag sidebar, sidebar, widget, plugin, posts, links, tag widget, simple tag, cloud, tag cloud, tilted, tags cloud
 Requires at least: 2.9+
 Tested up to: 3.3.2
-Stable tag: 1.0
+Stable tag: 1.1
 
 Shows a tilted cloud with the most used tags in a sidebar widget.
 
@@ -14,9 +14,10 @@ Shows a tilted cloud with the most used tags in a sidebar widget.
 The words inside the cloud are overlapping and tilted, creating a cluster. 
 
 The following options are customizable:
+
 * number of tags shown
 * link to tag page
-* tag color
+* tag color (random if none inserted)
 * smallest and biggest font size
 * horizontal and vertical spread
 
@@ -26,6 +27,7 @@ For more informations:  [www.whiletrue.it](http://www.whiletrue.it/en/projects/w
 
 Do you like this plugin? Give a chance to our other works:
 
+* [Really Simple Facebook Twitter Share Buttons](http://www.whiletrue.it/en/projects/wordpress/22-really-simple-facebook-twitter-share-buttons-per-wordpress.html "Really Simple Facebook Twitter Share Buttons")
 * [Most and Least Read Posts](http://www.whiletrue.it/en/projects/wordpress/29-most-and-least-read-posts-widget-per-wordpress.html "Most and Least Read Posts")
 * [Random Tweet Widget](http://www.whiletrue.it/en/projects/wordpress/33-random-tweet-widget-per-wordpress.html "Random Tweet Widget")
 * [Reading Time](http://www.whiletrue.it/en/projects/wordpress/17-reading-time-per-wordpress.html "Reading Time")
@@ -40,9 +42,12 @@ Do you like this plugin? Give a chance to our other works:
 4. Enjoy!
 
 == Screenshots ==
-Coming soon
+1. Sample content, with random colors  
 
 == Changelog ==
+
+= 1.1 =
+Added: Random tag colors (if none inserted)
 
 = 1.0.0 =
 Initial release

@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name: Tilted Tag Cloud Widget
 Plugin URI: http://www.whiletrue.it/
 Description: Takes the website tags and aggregates them into a tilted cloud widget for sidebar.
 Author: WhileTrue
-Version: 1.0
+Version: 1.1
 Author URI: http://www.whiletrue.it/
 */
 
@@ -25,7 +24,7 @@ function tilted_tag_cloud ($instance) {
 	$plugin_name = 'tilted-tag-cloud';
 
 	// RETRIEVE TAGS
-	$words_color = ($instance['words_color']!='') ? $instance['words_color'] : 'gray';
+	$words_color = $instance['words_color'];
 	$number = (is_numeric($instance['words_number']) and $instance['words_number']>0) ? $instance['words_number'] : 20;
 	$smallest_size = (is_numeric($instance['smallest_size']) and $instance['smallest_size']>0) ? $instance['smallest_size'] : 7;
 	$largest_size =  (is_numeric($instance['largest_size'])  and $instance['largest_size'] >0) ? $instance['largest_size']  : 14;
@@ -38,6 +37,7 @@ function tilted_tag_cloud ($instance) {
 
 		$deg = rand(-45,45);
 
+		$the_color = ($words_color=='') ? '#'.str_pad(dechex(rand(0,4096)),3,'0',STR_PAD_LEFT) : $words_color;
 		$out_style .=  '
 		div#'.$plugin_name.' span#'.$plugin_name.'-el-'.$i.' {
 			margin-top:'.rand(5,round($instance['vertical_spread']*($i+1)/$i)).'px; 
@@ -49,8 +49,14 @@ function tilted_tag_cloud ($instance) {
 			          transform: rotate('.$deg.'deg);  
 			               zoom: 1;
 		}
+		div#'.$plugin_name.' span#'.$plugin_name.'-el-'.$i.' a, 
+		div#'.$plugin_name.' span#'.$plugin_name.'-el-'.$i.' a:visited {
+			color:'.$the_color.';
+		}
 		';	
 	}
+	
+	$words_color_restore = ($words_color=='') ? '"#"+(Math.random()*0xFFFFFF<<0).toString(16)' : '"'.$words_color.'"';
 	
 	return '<div id="'.$plugin_name.'">'.$out.'</div>
 	<style>
@@ -59,10 +65,9 @@ function tilted_tag_cloud ($instance) {
 		height:'.($instance['vertical_spread']*3).'px;
 	}
 	div#'.$plugin_name.' span {
-			position:absolute; padding-bottom:8px; z-index:1;
+		position:absolute; padding-bottom:8px; z-index:1;
 	}
-	div#'.$plugin_name.' span, div#'.$plugin_name.' a, div#'.$plugin_name.' a:hover, div#'.$plugin_name.' a:visited {
-		color:'.$words_color.';
+	div#'.$plugin_name.' a, div#'.$plugin_name.' a:hover, div#'.$plugin_name.' a:visited {
 		text-decoration:none;
 	}
 	'.$out_style.'
@@ -78,7 +83,7 @@ function tilted_tag_cloud ($instance) {
 		  function () {
 		    jQuery(this).css("z-index",0);
 		    jQuery(this).css("font-weight","normal");
-		    jQuery(this).css("color","'.$words_color.'");
+		    jQuery(this).css("color",'.$words_color_restore.');
 		  }
 		);
 	});
@@ -108,7 +113,7 @@ class TiltedTagCloudWidget extends WP_Widget {
 		$this->options = array(
 			array('name'=>'title', 'label'=>'Title:', 'type'=>'text'),
 			array('name'=>'words_number',      'label'=>'Number of words to show:', 'type'=>'text'),
-			array('name'=>'words_color',       'label'=>'Word color (default is gray):', 'type'=>'text'),
+			array('name'=>'words_color',       'label'=>'Word color (random if none inserted):', 'type'=>'text'),
 			array('name'=>'smallest_font',     'label'=>'Smallest font size (default is 7):', 'type'=>'text'),
 			array('name'=>'largest_font',      'label'=>'Largest font size (default is 14):', 'type'=>'text'),
 			array('name'=>'horizontal_spread', 'label'=>'Horizontal spread in px (default is 60):', 'type'=>'text'),
@@ -143,7 +148,7 @@ class TiltedTagCloudWidget extends WP_Widget {
 		if (empty($instance)) {
 			$instance['title']             = 'Tilted Tag Cloud';
 			$instance['words_number']      = 20;
-			$instance['words_color']       = 'gray';
+			$instance['words_color']       = '';
 			$instance['smallest_font']     = '7';
 			$instance['largest_font']      = '14';
 			$instance['horizontal_spread'] = '60';
