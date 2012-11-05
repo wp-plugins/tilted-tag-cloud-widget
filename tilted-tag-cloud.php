@@ -4,7 +4,7 @@ Plugin Name: Tilted Tag Cloud Widget
 Plugin URI: http://www.whiletrue.it/
 Description: Takes the website tags and aggregates them into a tilted cloud widget for sidebar.
 Author: WhileTrue
-Version: 1.1
+Version: 1.2
 Author URI: http://www.whiletrue.it/
 */
 
@@ -26,11 +26,13 @@ function tilted_tag_cloud ($instance) {
 	// RETRIEVE TAGS
 	$words_color = $instance['words_color'];
 	$number = (is_numeric($instance['words_number']) and $instance['words_number']>0) ? $instance['words_number'] : 20;
-	$smallest_size = (is_numeric($instance['smallest_size']) and $instance['smallest_size']>0) ? $instance['smallest_size'] : 7;
-	$largest_size =  (is_numeric($instance['largest_size'])  and $instance['largest_size'] >0) ? $instance['largest_size']  : 14;
+	$smallest_size = (isset($instance['smallest_size']) and is_numeric($instance['smallest_size']) and $instance['smallest_size']>0) ? $instance['smallest_size'] : 7;
+	$largest_size =  (isset($instance['largest_size']) and is_numeric($instance['largest_size'])  and $instance['largest_size'] >0) ? $instance['largest_size']  : 14;
 
 	$tags = wp_tag_cloud('smallest=14&largest=30&number='.$number.'&order=RAND&format=array' );
 
+	$out = '';
+	$out_style = '';
 	foreach ($tags as $num=>$tag) {
 		$i = $num+1;
 		$out .=  '<span id="'.$plugin_name.'-el-'.$i.'">'.$tag.'</span>';
