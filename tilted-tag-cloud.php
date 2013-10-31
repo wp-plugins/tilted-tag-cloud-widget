@@ -4,7 +4,7 @@ Plugin Name: Tilted Tag Cloud Widget
 Plugin URI: http://www.whiletrue.it/
 Description: Takes the website tags and aggregates them into a tilted cloud widget for sidebar.
 Author: WhileTrue
-Version: 1.2.2
+Version: 1.3
 Author URI: http://www.whiletrue.it/
 */
 
@@ -24,10 +24,11 @@ function tilted_tag_cloud ($instance) {
 	$plugin_name = 'tilted-tag-cloud';
 
 	// RETRIEVE TAGS
-	$words_color = $instance['words_color'];
-	$number = (is_numeric($instance['words_number']) and $instance['words_number']>0) ? $instance['words_number'] : 20;
-	$smallest_size = (isset($instance['smallest_size']) and is_numeric($instance['smallest_size']) and $instance['smallest_size']>0) ? $instance['smallest_size'] : 7;
-	$largest_size =  (isset($instance['largest_size']) and is_numeric($instance['largest_size'])  and $instance['largest_size'] >0) ? $instance['largest_size']  : 14;
+	$words_color   = $instance['words_color'];
+	$hover_color   = (isset($instance['hover_color']) && $instance['hover_color']!='') ? $instance['hover_color'] : 'black';
+	$number        = (isset($instance['words_number'])  && is_numeric($instance['words_number'])  && $instance['words_number'] >0) ? $instance['words_number'] : 20;
+	$smallest_size = (isset($instance['smallest_size']) && is_numeric($instance['smallest_size']) && $instance['smallest_size']>0) ? $instance['smallest_size'] : 7;
+	$largest_size  = (isset($instance['largest_size'])  && is_numeric($instance['largest_size'])  && $instance['largest_size'] >0) ? $instance['largest_size']  : 14;
 
 	$tags = wp_tag_cloud('smallest=14&largest=30&number='.$number.'&order=RAND&format=array' );
 
@@ -80,7 +81,7 @@ function tilted_tag_cloud ($instance) {
 			function () {
 		    jQuery(this).css("z-index",10);
 		    jQuery(this).css("font-weight","bold");
-		    jQuery(this).css("color","black");
+		    jQuery(this).css("color","'.$hover_color.'");
 		  },
 		  function () {
 		    jQuery(this).css("z-index",0);
@@ -115,7 +116,8 @@ class TiltedTagCloudWidget extends WP_Widget {
 		$this->options = array(
 			array('name'=>'title', 'label'=>'Title:', 'type'=>'text'),
 			array('name'=>'words_number',      'label'=>'Number of words to show:', 'type'=>'text'),
-			array('name'=>'words_color',       'label'=>'Word color (random if none inserted):', 'type'=>'text'),
+			array('name'=>'words_color',       'label'=>'Word color (random if not entered):', 'type'=>'text'),
+			array('name'=>'hover_color',       'label'=>'Hover color (black if not entered):', 'type'=>'text'),
 			array('name'=>'smallest_font',     'label'=>'Smallest font size (default is 7):', 'type'=>'text'),
 			array('name'=>'largest_font',      'label'=>'Largest font size (default is 14):', 'type'=>'text'),
 			array('name'=>'horizontal_spread', 'label'=>'Horizontal spread in px (default is 60):', 'type'=>'text'),
