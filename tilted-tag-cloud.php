@@ -4,7 +4,7 @@ Plugin Name: Tilted Tag Cloud Widget
 Plugin URI: http://www.whiletrue.it/
 Description: Takes the website tags and aggregates them into a tilted cloud widget for sidebar.
 Author: WhileTrue
-Version: 1.3.1
+Version: 1.3.2
 Author URI: http://www.whiletrue.it/
 */
 
@@ -122,6 +122,7 @@ class TiltedTagCloudWidget extends WP_Widget {
 			array('name'=>'largest_font',      'label'=>'Largest font size (default is 14):', 'type'=>'text'),
 			array('name'=>'horizontal_spread', 'label'=>'Horizontal spread in px (default is 60):', 'type'=>'text'),
 			array('name'=>'vertical_spread',   'label'=>'Vertical spread in px (default is 60):', 'type'=>'text'),
+			array('type'=>'donate'),
 		);
         parent::WP_Widget(false, $name = 'Tilted Tag Cloud');	
     }
@@ -161,13 +162,20 @@ class TiltedTagCloudWidget extends WP_Widget {
 
 		foreach ($this->options as $val) {
 			echo '<p>
-				      <label for="'.$this->get_field_id($val['name']).'">'.__($val['label']).'</label> 
+				      <label for="'.$this->get_field_id($val['name']).'">'.__($val['label'], 'tilted-tag-cloud-widget').'</label> 
 				   ';
 			if ($val['type']=='text') {
 				echo '<input class="widefat" id="'.$this->get_field_id($val['name']).'" name="'.$this->get_field_name($val['name']).'" type="text" value="'.esc_attr($instance[$val['name']]).'" />';
 			} else if ($val['type']=='checkbox') {
 				$checked = ($instance[$val['name']]) ? 'checked="checked"' : '';
 				echo '<input id="'.$this->get_field_id($val['name']).'" name="'.$this->get_field_name($val['name']).'" type="checkbox" '.$checked.' />';
+      } else if (isset($val['type']) && $val['type']=='donate') {
+        echo '<p style="text-align:center; font-weight:bold;">
+            '.__('Do you like it? I\'m supporting it, please support me!', 'tilted-tag-cloud-widget').'<br />
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=giu%40formikaio%2eit&item_name=WhileTrue&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted" target="_blank">
+         			<img alt="PayPal - The safer, easier way to pay online!" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" > 
+            </a>
+          </p>';
 			}
 			echo '</p>';
 		}
