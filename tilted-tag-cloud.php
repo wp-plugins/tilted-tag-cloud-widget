@@ -4,7 +4,7 @@ Plugin Name: Tilted Tag Cloud Widget
 Plugin URI: http://www.whiletrue.it/
 Description: Takes the website tags and aggregates them into a tilted cloud widget for sidebar.
 Author: WhileTrue
-Version: 1.3.2
+Version: 1.3.3
 Author URI: http://www.whiletrue.it/
 */
 
@@ -50,7 +50,6 @@ function tilted_tag_cloud ($instance) {
 			  -webkit-transform: rotate('.$deg.'deg);  
 			      -ms-transform: rotate('.$deg.'deg);  
 			          transform: rotate('.$deg.'deg);  
-			               zoom: 1;
 		}
 		div#'.$plugin_name.' span#'.$plugin_name.'-el-'.$i.' a, 
 		div#'.$plugin_name.' span#'.$plugin_name.'-el-'.$i.' a:visited {
