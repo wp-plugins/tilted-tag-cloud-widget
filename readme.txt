@@ -3,8 +3,8 @@ Contributors: whiletrue
 Donate link: http://www.whiletrue.it/
 Tags: tag, tags, tag sidebar, sidebar, widget, plugin, posts, links, tag widget, simple tag, cloud, tag cloud, tilted, tags cloud
 Requires at least: 2.9+
-Tested up to: 4.0
-Stable tag: 1.3.4
+Tested up to: 4.1
+Stable tag: 1.3.5
 
 Shows a tilted cloud with the most used tags in a sidebar widget.
 
@@ -31,8 +31,8 @@ For more info on this plugin:  [www.whiletrue.it](http://www.whiletrue.it/tilted
 
 Do you like this plugin? Give a chance to our other works:
 
-* [Really Simple Facebook Twitter Share Buttons](http://www.whiletrue.it/really-simple-facebook-twitter-share-buttons-for-wordpress/ "Really Simple Facebook Twitter Share Buttons")
-* [Really simple Twitter Feed](http://www.whiletrue.it/really-simple-twitter-feed-widget-for-wordpress/ "Really simple Twitter Feed")
+* [Really Simple Share](http://www.whiletrue.it/really-simple-share-wordpress-plugin/ "Really Simple Share")
+* [Really Simple Twitter Feed Widget](http://www.whiletrue.it/really-simple-twitter-feed-widget-for-wordpress/ "Really Simple Twitter Feed Widget")
 * [Most and Least Read Posts](http://www.whiletrue.it/most-and-least-read-posts-widget-for-wordpress/ "Most and Least Read Posts")
 * [Reading Time](http://www.whiletrue.it/reading-time-for-wordpress/ "Reading Time")
 
@@ -48,8 +48,11 @@ Do you like this plugin? Give a chance to our other works:
 
 == Changelog ==
 
+= 1.3.5 =
+* Plugin tested up WordPress 4.1
+
 = 1.3.4 =
-* Changed: Plugin tested up WordPress 4.0
+* Plugin tested up WordPress 4.0
 
 = 1.3.3 =
 * Fixed: CSS cleaning
