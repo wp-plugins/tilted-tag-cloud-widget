@@ -3,8 +3,8 @@ Contributors: whiletrue
 Donate link: http://www.whiletrue.it/
 Tags: tag, tags, tag sidebar, sidebar, widget, plugin, posts, links, tag widget, simple tag, cloud, tag cloud, tilted, tags cloud
 Requires at least: 2.9+
-Tested up to: 4.1
-Stable tag: 1.3.5
+Tested up to: 4.2
+Stable tag: 1.3.6
 
 Shows a tilted cloud with the most used tags in a sidebar widget.
 
@@ -47,6 +47,9 @@ Do you like this plugin? Give a chance to our other works:
 1. Sample content, with random colors  
 
 == Changelog ==
+
+= 1.3.6 =
+* Plugin tested up WordPress 4.2
 
 = 1.3.5 =
 * Plugin tested up WordPress 4.1
